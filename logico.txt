@@ -1,0 +1,19 @@
+UTENTE(id_utente, username, password_hash, ruolo, attivo)
+
+CLIENTE(id_cliente, nome, cognome, email, telefono, id_utente → UTENTE)
+
+MECCANICO(id_meccanico, nome, cognome, specializzazione, costo_orario, id_utente → UTENTE)
+
+MOTO(id_moto, targa, marca, modello, anno, id_cliente → CLIENTE)
+
+FORNITORE(id_fornitore, ragione_sociale, partita_iva, email)
+
+PEZZO_RICAMBIO(id_pezzo, codice, nome, quantita_stock, prezzo_vendita, scorta_minima, id_fornitore → FORNITORE)
+
+INTERVENTO(id_intervento, data_ingresso, data_uscita, stato, costo_totale, id_moto → MOTO, id_meccanico → MECCANICO)
+
+UTILIZZO_PEZZO(id_intervento → INTERVENTO, id_pezzo → PEZZO_RICAMBIO, quantita, prezzo_unitario)
+
+ORDINE(id_ordine, data_ordine, data_consegna_prevista, stato, importo_totale, id_fornitore → FORNITORE)
+
+DETTAGLIO_ORDINE(id_ordine → ORDINE, id_pezzo → PEZZO_RICAMBIO, quantita, prezzo_unitario)
